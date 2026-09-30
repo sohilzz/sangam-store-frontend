@@ -68,4 +68,42 @@ const images = document.querySelectorAll(".gph img, .product-image");
         alert("Unable to Coonect to Server.");
     }
 
-});
+    });
+
+    const counters = document.querySelectorAll(".counter");
+
+        const startCounter = (counter) => {
+        const target = Number(counter.dataset.target);
+        const duration = 1000;
+        const startTime = performance.now();
+
+        const updateCounter = (currentTime) => {
+            const progress = Math.min((currentTime - startTime) / duration, 1);
+
+            const currentValue = Math.floor(progress * target);
+
+            counter.textContent = currentValue + "+";
+
+            if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+            } else {
+            counter.textContent = target + "+";
+            }
+        };
+
+        requestAnimationFrame(updateCounter);
+    };
+
+    const statsSection = document.querySelector(".stats");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      if (entries[0].isIntersecting) {
+        counters.forEach(startCounter);
+    
+        observer.unobserve(statsSection);
+      }
+    }, {
+      threshold: 0.5
+    });
+    
+    observer.observe(statsSection);    

@@ -46,9 +46,24 @@ header{
    HERO
 ========================= */
 .hero{
-    background:linear-gradient(180deg,var(--steel),#23304480);
+    position:relative;
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(28,34,48,0.88) 0%,
+            rgba(28,34,48,0.65) 50%,
+            rgba(28,34,48,0.35) 100%
+        ),
+        url("../images/hero.jpg");
+    background-size:cover;
+    background-position:center right;
+    background-repeat:no-repeat;
     color:var(--white);
-    padding:80px 24px 64px;
+    padding:100px 24px 80px;
+    min-height:520px;
+    display:flex;
+    align-items:center;
+    
   }
   .hero .wrap{display:flex;flex-direction:column;gap:18px;max-width:640px;}
   .hero .tag{color:var(--brass);font-size:0.95rem;}
